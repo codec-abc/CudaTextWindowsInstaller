@@ -11,7 +11,7 @@ DefaultGroupName=CudaText
 UninstallDisplayIcon={app}\CudaText.exe
 Compression=lzma2
 SolidCompression=yes
-OutputDir=userdocs:Inno Setup Examples Output
+PrivilegesRequired=lowest
 
 [Types]
 Name: "full"; Description: "Full installation";
@@ -25,8 +25,7 @@ Source: "content\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs; P
 Name: "{app}"; Permissions: everyone-full
 
 [Components]
-;Name: "editor"; Description: "CudaText editor"; Flags: fixed; Types: full compact custom
-Name: "editor"; Description: "CudaText editor"; Flags: fixed; Types: full
+Name: "editor"; Description: "CudaText editor"; Flags: fixed; Types: full compact custom
 Name: "shellIntegration"; Description: "Shell Integration"; Types: full
 Name: "addExeToPath"; Description: "Add exe to path environment variable"; Types: full
 
@@ -34,13 +33,8 @@ Name: "addExeToPath"; Description: "Add exe to path environment variable"; Types
 Name: "{group}\CudaText"; Filename: "{app}\CudaText.exe"
 
 [Registry]
-Root: HKCR; Subkey: "*\shell\OpenWithCudaText\"; ValueType: string; ValueData: "Open w&ith CudaText"; Flags: uninsdeletekey;  Components: shellIntegration
-Root: HKCR; Subkey: "*\shell\OpenWithCudaText\"; ValueType: string; ValueName: "Icon"; ValueData: """{app}\cudatext.exe"""; Flags: uninsdeletekey;  Components: shellIntegration
-Root: HKCR; Subkey: "*\shell\OpenWithCudaText\command"; ValueType: string; ValueData: """{app}\cudatext.exe"" ""%1"""; Flags: uninsdeletekey;  Components: shellIntegration
+Root: HKCU; Subkey: "Software\Classes\Drive\shell\OpenWithCudaText\"; ValueType: string; ValueData: "Open w&ith CudaText"; Flags: uninsdeletekey;  Components: shellIntegration
+Root: HKCU; Subkey: "Software\Classes\Drive\shell\OpenWithCudaText\"; ValueType: string; ValueName: "Icon"; ValueData: """{app}\cudatext.exe"""; Flags: uninsdeletekey;  Components: shellIntegration
+Root: HKCU; Subkey: "Software\Classes\Drive\shell\OpenWithCudaText\command"; ValueType: string; ValueData: """{app}\cudatext.exe"" ""%1"""; Flags: uninsdeletekey;  Components: shellIntegration
 
-Root: HKCR; Subkey: "Folder\shell\OpenWithCudaText\"; ValueType: string; ValueData: "Open w&ith CudaText"; Flags: uninsdeletekey;  Components: shellIntegration 
-Root: HKCR; Subkey: "Folder\shell\OpenWithCudaText\"; ValueType: string; ValueName: "Icon"; ValueData: """{app}\cudatext.exe"""; Flags: uninsdeletekey;  Components: shellIntegration
-Root: HKCR; Subkey: "Folder\shell\OpenWithCudaText\command"; ValueType: string; ValueData: """{app}\cudatext.exe"" ""%1"""; Flags: uninsdeletekey;  Components: shellIntegration    
-
-
-Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}"; Components: addExeToPath
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}"; Components: addExeToPath
