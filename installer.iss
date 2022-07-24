@@ -33,8 +33,12 @@ Name: "addExeToPath"; Description: "Add exe to path environment variable"; Types
 Name: "{group}\CudaText"; Filename: "{app}\CudaText.exe"
 
 [Registry]
-Root: HKCU; Subkey: "Software\Classes\Drive\shell\OpenWithCudaText\"; ValueType: string; ValueData: "Open w&ith CudaText"; Flags: uninsdeletekey;  Components: shellIntegration
-Root: HKCU; Subkey: "Software\Classes\Drive\shell\OpenWithCudaText\"; ValueType: string; ValueName: "Icon"; ValueData: """{app}\cudatext.exe"""; Flags: uninsdeletekey;  Components: shellIntegration
-Root: HKCU; Subkey: "Software\Classes\Drive\shell\OpenWithCudaText\command"; ValueType: string; ValueData: """{app}\cudatext.exe"" ""%1"""; Flags: uninsdeletekey;  Components: shellIntegration
+Root: HKCU; Subkey: "Software\Classes\Directory\shell\OpenWithCudaText\"; ValueType: string; ValueData: "Open w&ith CudaText"; Flags: uninsdeletekey;  Components: shellIntegration
+Root: HKCU; Subkey: "Software\Classes\Directory\shell\OpenWithCudaText\"; ValueType: string; ValueName: "Icon"; ValueData: """{app}\cudatext.exe"""; Flags: uninsdeletekey;  Components: shellIntegration
+Root: HKCU; Subkey: "Software\Classes\Directory\shell\OpenWithCudaText\command"; ValueType: string; ValueData: """{app}\cudatext.exe"" ""%V"""; Flags: uninsdeletekey;  Components: shellIntegration
+
+Root: HKCU; Subkey: "Software\Classes\*\shell\OpenWithCudaText\"; ValueType: string; ValueData: "Open w&ith CudaText"; Flags: uninsdeletekey;  Components: shellIntegration
+Root: HKCU; Subkey: "Software\Classes\*\shell\OpenWithCudaText\"; ValueType: string; ValueName: "Icon"; ValueData: """{app}\cudatext.exe"""; Flags: uninsdeletekey;  Components: shellIntegration
+Root: HKCU; Subkey: "Software\Classes\*\shell\OpenWithCudaText\command"; ValueType: string; ValueData: """{app}\cudatext.exe"" ""%V"""; Flags: uninsdeletekey;  Components: shellIntegration
 
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}"; Components: addExeToPath
